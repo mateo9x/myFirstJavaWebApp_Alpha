@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>Mateo9x main page</title>
+</head>
+<style>
+    body {
+        background-color: darkgrey;
+    }
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2.5rem;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">My First Java Web App</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 align="center">WebApp is running!</h1>
+            <p align="center"><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Movies</h2>
+                <p>Choosen movies</p>
+                <ul>
+                    <li><a href="#" th:href="@{'/movie/list'}" style="margin-right: 5px;">List</a>all of your movies</li>
+                    <li><a href="#" th:href="@{'/movie/new'}" style="margin-right: 5px;">Add new</a>movie</li>
+                </ul>
+                Planned:
+                <ul>
+                    <li>manage more</li>
+                    <li>support images</li>
+                    <li>links to public records</li>
+                </ul>
+                <p><a class="btn btn-default" href="#" role="button" th:href="@{'/movies/'}" >All Movies &raquo;</a></p>
+            </div>
+            <div class="col-md-3">
+                <h2>Directors</h2>
+                <p>Choosen directors</p>
+                <ul>
+                    <li><a href="#" th:href="@{'/director/list'}" style="margin-right: 5px;">List</a>all of your directors</li>
+                    <li><a href="#" th:href="@{'/director/new'}" style="margin-right: 5px;">Add new</a>director</li>
+                </ul>
+                Planned:
+                <ul>
+                    <li>manage more</li>
+                    <li>support images</li>
+                    <li>links to public records</li>
+                </ul>
+                <p><a class="btn btn-default" href="#" role="button" th:href="@{'/directors/'}" >All Directors &raquo;</a></p>
+            </div>
+            <div class="col-md-3">
+                <h2>Distributors</h2>
+                <p>Distributors of your movies.</p>
+                <ul>
+                    <li><a href="#" th:href="@{'/distributor/list'}" style="margin-right: 5px;">List</a>all distributors</li>
+                    <li><a href="#" th:href="@{'/distributor/new'}" style="margin-right: 5px;">Add new</a>distributor</li>
+                </ul>
+                Planned:
+                <ul>
+                    <li>manage more</li>
+                    <li>support images</li>
+                    <li>links to public records</li>
+                </ul>
+                <p><a class="btn btn-default" href="#" role="button" th:href="@{'/distributors/'}" >All Distributors &raquo;</a></p>
+            </div>
+
+                <div class="col-md-3">
+                    <h2>Film Genres</h2>
+                    <p>Choosen film Genres</p>
+                    <ul>
+                        <li><a href="#" th:href="@{'/filmGenre/list'}" style="margin-right: 5px;">List</a>all of your filmGenres</li>
+                        <li><a href="#" th:href="@{'/filmGenre/new'}" style="margin-right: 5px;">Add new</a>filmGenre</li>
+                    </ul>
+                    Planned:
+                    <ul>
+                        <li>manage more</li>
+                        <li>support images</li>
+                        <li>links to public records</li>
+                    </ul>
+                    <p><a class="btn btn-default" href="#" role="button" th:href="@{'/filmGenres/'}" >All filmGenres &raquo;</a></p>
+                </div>
+        </div>
+    </div>
+
+
+        <hr>
+
+
+        <footer>
+            <p align="center"><b><i>2020 WSB</b></i>  </p>
+        </footer>
+</body>
+</html>
