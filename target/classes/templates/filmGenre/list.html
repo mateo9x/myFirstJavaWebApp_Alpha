@@ -23,14 +23,14 @@
                             <th>ID</th>
                             <th>Name</th>
                             </thead>
-                            <tr th:each="filmgenre : ${filmgenres}">
-                                <td th:text="${filmgenre.id}">1</td>
-                                <td th:text="${filmgenre.genre}">Fantasy</td>
+                            <tr th:each="filmGenre : ${filmGenres}">
+                                <td th:text="${filmGenre.id}">1</td>
+                                <td th:text="${filmGenre.genre}">Fantasy</td>
 
                                 <td>
-                                    <a href="#" th:href="@{'/filmgenre/' + ${filmgenre.id} + '/show'}" style="margin-right: 5px;">View</a>
-                                    <a href="#" th:href="@{'/filmgenre/' + ${filmgenre.id} + '/movies'}" style="margin-right: 5px;">Movies</a>
-                                    <a href="#" th:href="@{'/filmgenre/' + ${filmgenre.id} + '/delete'}">Delete <small style="color: #f44;"><i>(not safe)</i></small></a>
+                                    <a href="#" th:href="@{'/filmGenre/' + ${filmGenre.id} + '/show'}" style="margin-right: 5px;">View</a>
+                                    <a href="#" th:href="@{'/filmGenre/' + ${filmGenre.id} + '/addeddit'}" style="margin-right: 5px;">Edit</a>
+                                    <a href="#" th:href="@{'/filmGenre/' + ${filmGenre.id} + '/delete'}">Delete </a>
                                 </td>
                             </tr>
                         </table>
@@ -45,7 +45,7 @@
                 <input onclick='javascript:window.history.back()' value='Back' type='button' class="btn btn-default"/>
             </div>
             <div class="col-md-1 col-md-offset-10">
-                <a href="#" th:href="@{'/filmgenre/new'}" role="button" class="btn btn-success">Add</a>
+                <a href="#" th:href="@{'/filmGenre/new'}" role="button" class="btn btn-success">Add</a>
             </div>
         </div>
     </div>

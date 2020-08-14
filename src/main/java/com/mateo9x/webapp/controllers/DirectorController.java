@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -44,10 +43,19 @@ public class DirectorController {
         model.addAttribute("director", directorRepository.findById(id).get());
         return "director/show";
     }
-    @RequestMapping("/director/{id}/delete")
+
+    @GetMapping("/director/{id}/delete")
     public String deleteDirector(Model model, @PathVariable("id")Long id){
         directorRepository.deleteById(id);
-        return "redirect:/directors";
+        model.addAttribute("director", directorRepository.findAll());
+        return "redirect:/";
+    }
+
+    @GetMapping("/director/{id}/addeddit")
+    public String editDirector(@PathVariable("id") long id, Model model) {
+        Director director = directorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("director", director);
+        return "director/addeddit";
     }
 
     @GetMapping

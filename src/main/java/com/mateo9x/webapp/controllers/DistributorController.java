@@ -4,6 +4,7 @@ import com.mateo9x.webapp.commands.DistributorCommand;
 import com.mateo9x.webapp.converters.DistributorCommandToDistributor;
 import com.mateo9x.webapp.model.Director;
 import com.mateo9x.webapp.model.Distributor;
+import com.mateo9x.webapp.model.Movie;
 import com.mateo9x.webapp.repositories.DirectorRepository;
 import com.mateo9x.webapp.repositories.DistributorRepository;
 import com.mateo9x.webapp.repositories.FilmGenreRepository;
@@ -45,11 +46,19 @@ public class DistributorController {
         model.addAttribute("distributor", distributorRepository.findById(id).get());
         return "distributor/show";
     }
-    @GetMapping
-    @RequestMapping("/distributor/{id}/delete")
-    public String deleteDistributor(@PathVariable("id")Long id ){
+    @GetMapping("/distributor/{id}/delete")
+    public String deleteDistributor(@PathVariable("id")Long id,Model model ){
         distributorRepository.deleteById(id);
-        return "redirect:/distributors";
+        model.addAttribute("distributor", distributorRepository.findAll());
+        return "redirect:/";
+    }
+
+
+    @GetMapping("/distributor/{id}/addeddit")
+    public String editDistributor(@PathVariable("id") long id, Model model) {
+        Distributor distributor = distributorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("distributor", distributor);
+        return "distributor/addeddit";
     }
 
     @GetMapping

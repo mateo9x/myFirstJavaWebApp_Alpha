@@ -4,12 +4,14 @@ import com.mateo9x.webapp.commands.FilmGenreCommand;
 import com.mateo9x.webapp.converters.FilmGenreCommandToFilmGenre;
 import com.mateo9x.webapp.model.Distributor;
 import com.mateo9x.webapp.model.FilmGenre;
+import com.mateo9x.webapp.model.Movie;
 import com.mateo9x.webapp.repositories.DirectorRepository;
 import com.mateo9x.webapp.repositories.DistributorRepository;
 import com.mateo9x.webapp.repositories.FilmGenreRepository;
 import com.mateo9x.webapp.repositories.MovieRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -38,6 +40,13 @@ public class FilmGenreController {
         return "filmGenre/list";
     }
 
+    @GetMapping("/filmGenre/{id}/addeddit")
+    public String editFilmGenre(@PathVariable("id") long id, Model model) {
+        FilmGenre filmGenre = filmGenreRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("filmGenre", filmGenre);
+        return "filmGenre/addeddit";
+    }
+
     @GetMapping
     @RequestMapping("/filmGenre/{id}/show")
     public String getFilmGenreDetails(Model model, @PathVariable("id")Long id){
@@ -45,11 +54,12 @@ public class FilmGenreController {
         return "filmGenre/show";
     }
 
-    @GetMapping
-    @RequestMapping("/filmGenre/{id}/delete")
-    public String deleteFilmGenre(@PathVariable("id")Long id){
+
+    @GetMapping("/filmGenre/{id}/delete")
+    public String deleteFilmGenre(Model model, @PathVariable("id") Long id) {
         filmGenreRepository.deleteById(id);
-        return "redirect:/filmGenres";
+        model.addAttribute("filmGenre", filmGenreRepository.findAll());
+        return "redirect:/";
     }
 
     @GetMapping

@@ -9,7 +9,9 @@ import com.mateo9x.webapp.repositories.FilmGenreRepository;
 import com.mateo9x.webapp.repositories.MovieRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import java.util.Optional;
 
 @Controller
 public class MovieController {
@@ -36,6 +38,21 @@ public class MovieController {
         return "movie/list";
     }
 
+    @GetMapping("/movie/{id}/delete")
+    public String deleteMovie(Model model, @PathVariable("id") Long id) {
+        movieRepository.deleteById(id);
+        model.addAttribute("movie", movieRepository.findAll());
+        return "redirect:/";
+    }
+
+    @GetMapping("/movie/{id}/addeddit")
+    public String editMovie(@PathVariable("id") long id, Model model) {
+        Movie movie = movieRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("movie", movie);
+        return "movie/addeddit";
+    }
+
+
     @GetMapping
     @RequestMapping("/movie/{id}/show")
     public String getMovieDetails(Model model, @PathVariable("id")Long id){
@@ -49,11 +66,22 @@ public class MovieController {
         model.addAttribute("directors", directorRepository.findAll());
         return "movie/addeddit";
     }
+
+
     @PostMapping("movie")
     public String saveOrUpdate(@ModelAttribute MovieCommand command){
-        Movie detachedMovie = movieCommandToMovie.convert(command);
-        Movie savedMovie = movieRepository.save(detachedMovie);
-        return "redirect:/movie/" + savedMovie.getId() + "/show";
+
+        Optional<Movie> movieOptional = movieRepository.getMovieByName(command.getName());
+
+        if(!movieOptional.isPresent()){
+
+            Movie detachedMovie = movieCommandToMovie.convert(command);
+            Movie savedMovie = movieRepository.save(detachedMovie);
+            return "redirect:/movie/" + savedMovie.getId() + "/show";
+        }else{
+            System.out.println("Sorry, there's such movie in db");
+            return "redirect:/movie/" + movieOptional.get().getId() + "/show";
+        }
     }
 
 }
