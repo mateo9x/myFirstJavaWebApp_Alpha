@@ -9,7 +9,7 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <title th:text="${distributor.name}">The distributor details</title>
+    <title th:text="${distributor.name}">The film genre details</title>
 </head>
 <body>
 <div class="container-fluid" style="margin-top: 20px;">
@@ -31,9 +31,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-2">
-                                <h5><b>Nick:</b></h5>
-                            </div>
+
 
                         </div>
                     </div>
@@ -43,6 +41,7 @@
         </div>
 
     </div>
+    <li th:align="center"><a class="btn btn-primary btn-lg" th:href="@{'http://localhost:8080'}" >BACK TO MAIN PAGE</a></li>
 </div>
 </body>
 </html>

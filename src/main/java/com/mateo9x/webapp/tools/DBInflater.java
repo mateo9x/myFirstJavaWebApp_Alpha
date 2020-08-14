@@ -50,6 +50,8 @@ public class DBInflater implements ApplicationListener<ContextRefreshedEvent> {
 
         Director tarantino = new Director("Quentin", "Tarantino", "Taran" );
         Movie django = new Movie("Django");
+        FilmGenre western = new FilmGenre("Western");
+        Distributor hqcompany = new Distributor("HQ Company");
         tarantino.getMovies().add(django);
         django.getDirectors().add(tarantino);
         directorRepository.save(tarantino);
@@ -57,10 +59,14 @@ public class DBInflater implements ApplicationListener<ContextRefreshedEvent> {
 
         Director chrisnolan = new Director("Christopher", "Nolan", "ChrisNolan" );
         Movie dark_knight_returns = new Movie("Dark Knight Returns");
+        Distributor goldenmovies = new Distributor("Golden Movies");
+        FilmGenre fantasy = new FilmGenre("Fantasy");
         chrisnolan.getMovies().add(dark_knight_returns);
         dark_knight_returns.getDirectors().add(chrisnolan);
         directorRepository.save(chrisnolan);
         movieRepository.save(dark_knight_returns);
+        filmGenreRepository.save(fantasy);
+        distributorRepository.save(goldenmovies);
 
 
 
